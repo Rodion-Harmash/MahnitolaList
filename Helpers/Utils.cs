@@ -77,7 +77,7 @@ namespace MahnitolaList.Helpers
                 string m = Path.GetFileNameWithoutExtension(t.FileName);
                 int q = t.DurationSeconds;
 
-                sb.AppendLine($"\tl{idx} {idx} ="); // другий операнд — поточний індекс
+                sb.AppendLine($"\tl0 {idx} =");
                 sb.AppendLine("\t{if}");
                 sb.AppendLine($"\t\t\"{EscapeOscString(m)}\" (S.$.mp3_track_name)");
                 sb.AppendLine($"\t\t{q} (S.L.mp3_track_time)");
