@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -67,16 +67,21 @@ namespace MahnitolaList.Helpers
             }
             sb.AppendLine("\t{endif}");
             sb.AppendLine();
+
             sb.AppendLine($"\t{n} (S.L.mp3_max_number_track)");
             sb.AppendLine();
 
-            foreach (var t in tracks)
+            for (int idx = 0; idx <= n; idx++)
             {
-                sb.AppendLine($"\tl0 {n} =");
+                var t = tracks[idx];
+                string m = Path.GetFileNameWithoutExtension(t.FileName);
+                int q = t.DurationSeconds;
+
+                sb.AppendLine($"\tl{idx} {idx} ="); // другий операнд — поточний індекс
                 sb.AppendLine("\t{if}");
-                sb.AppendLine($"\t\t\"{EscapeOscString(t.FileName)}\" (S.$.mp3_track_name)");
-                sb.AppendLine("\t\t0 (S.L.mp3_track_time)");
-                sb.AppendLine($"\t\t\"  {EscapeOscString(t.FileName)}  \" (S.$.mp3_display_track_name)");
+                sb.AppendLine($"\t\t\"{EscapeOscString(m)}\" (S.$.mp3_track_name)");
+                sb.AppendLine($"\t\t{q} (S.L.mp3_track_time)");
+                sb.AppendLine($"\t\t\"  {EscapeOscString(m)}  \" (S.$.mp3_display_track_name)");
                 sb.AppendLine("\t{endif}");
             }
 
