@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+	<ApplicationIcon>Resources\Icons\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\app.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Resources\Lang.en.xaml" />
+    <Page Remove="Resources\Lang.pl.xaml" />
+    <Page Remove="Resources\Lang.uk.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\app.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Lang.en.xaml" />
+    <Resource Include="Resources\Lang.pl.xaml" />
+    <Resource Include="Resources\Lang.uk.xaml" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,2 @@
+C:\Users\ASUS\source\repos\MahnitolaList\MahnitolaList\bin\Release\net9.0-windows\win-x64\publish\MahnitolaList.pdb
+C:\Users\ASUS\source\repos\MahnitolaList\MahnitolaList\bin\Release\net9.0-windows\win-x64\publish\MahnitolaList.exe

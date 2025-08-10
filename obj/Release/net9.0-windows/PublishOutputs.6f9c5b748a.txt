@@ -1,0 +1,12 @@
+C:\Users\ASUS\Downloads\app\MahnitolaList.exe
+C:\Users\ASUS\Downloads\app\MahnitolaList.dll
+C:\Users\ASUS\Downloads\app\MahnitolaList.deps.json
+C:\Users\ASUS\Downloads\app\MahnitolaList.runtimeconfig.json
+C:\Users\ASUS\Downloads\app\MahnitolaList.pdb
+C:\Users\ASUS\Downloads\app\NAudio.dll
+C:\Users\ASUS\Downloads\app\NAudio.Asio.dll
+C:\Users\ASUS\Downloads\app\NAudio.Core.dll
+C:\Users\ASUS\Downloads\app\NAudio.Midi.dll
+C:\Users\ASUS\Downloads\app\NAudio.Wasapi.dll
+C:\Users\ASUS\Downloads\app\NAudio.WinForms.dll
+C:\Users\ASUS\Downloads\app\NAudio.WinMM.dll

@@ -1,0 +1,116 @@
+﻿<Window x:Class="MahnitolaList.Views.PlaylistWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:helpers="clr-namespace:MahnitolaList.Helpers"
+        Title="{DynamicResource Playlist_Title}"
+        Height="540" Width="900">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <helpers:ItemIndexConverter x:Key="ItemIndexConverter" />
+    </Window.Resources>
+
+    <AdornerDecorator x:Name="AdornerScope">
+        <Grid x:Name="Root" Margin="12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="0,0,8,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="BtnSelectFolder"
+                        Content="{DynamicResource Btn_SelectFolder}"
+                        Width="160"
+                        Click="BtnSelectFolder_Click"/>
+                <Button x:Name="BtnShuffle"
+                        Content="{DynamicResource Btn_Shuffle}"
+                        Width="120"
+                        Click="BtnShuffle_Click"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,8,0,8" VerticalAlignment="Center">
+                <CheckBox x:Name="ChkIncludeRadio"
+                          Content="{DynamicResource Add_Radio}"
+                          Checked="ChkIncludeRadio_Checked"
+                          Unchecked="ChkIncludeRadio_Unchecked"
+                          Margin="0,0,12,0"/>
+                <StackPanel Orientation="Horizontal"
+                            Visibility="{Binding ElementName=ChkIncludeRadio, Path=IsChecked, Converter={StaticResource BoolToVis}}">
+                    <TextBox x:Name="TxtRadioName"
+                             Width="360"
+                             VerticalAlignment="Center"
+                             Text=""/>
+                </StackPanel>
+            </StackPanel>
+
+            <ListBox x:Name="TracksList"
+                     Grid.Row="2"
+                     ItemsSource="{Binding Tracks}"
+                     AllowDrop="True"
+                     PreviewMouseLeftButtonDown="TracksList_PreviewMouseLeftButtonDown"
+                     PreviewMouseMove="TracksList_PreviewMouseMove"
+                     DragOver="TracksList_DragOver"
+                     Drop="TracksList_Drop"
+                     BorderBrush="#DDDDDD" BorderThickness="1" Padding="4"
+                     ScrollViewer.CanContentScroll="False">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="0,3"/>
+                        <Setter Property="Padding" Value="6"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="RenderTransform">
+                            <Setter.Value>
+                                <TranslateTransform Y="6"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Opacity" Value="0"/>
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.12"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(TranslateTransform.Y)" To="0" Duration="0:0:0.12"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F3F8FF"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#E8F0FF"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock Text="≡" FontSize="16" Margin="6,0" VerticalAlignment="Center" Foreground="#888"/>
+                            <TextBlock Margin="6,0" VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource ItemIndexConverter}">
+                                        <Binding/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=ListBox}"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock Text="{Binding FileName}" Margin="8,0,6,0" VerticalAlignment="Center"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+                <Button Content="{DynamicResource Btn_Back}" Width="120" Click="BtnBack_Click" Margin="0,0,8,0"/>
+                <Button Content="{DynamicResource Btn_Create}" Width="160" Click="BtnGenerateOsc_Click"/>
+            </StackPanel>
+        </Grid>
+    </AdornerDecorator>
+</Window>
