@@ -91,7 +91,8 @@ namespace MahnitolaList.Helpers
 
         public static void SaveOscFile(string filePath, string content)
         {
-            File.WriteAllText(filePath, content, Encoding.UTF8);
+            var utf8NoBom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+            File.WriteAllText(filePath, content, utf8NoBom);
         }
 
         private static string EscapeOscString(string s)
